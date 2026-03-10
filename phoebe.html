@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Phoebe Bridgers</title>
+
+<style>
+
+body{
+    font-family: Helvetica, Arial, sans-serif;
+    background-color: #2b2b2b;
+    color: red;
+    margin: 0;
+    opacity: 0;
+    transition: opacity 0.8s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+body.visible{
+    opacity: 1;
+}
+
+.contenedor{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 80px;
+    padding: 80px;
+    max-width: 1400px;
+}
+
+.media{
+    width: 55%;
+}
+
+.media img, .media video{
+    width: 100%;
+    border-radius: 8px;
+    transition: opacity 0.5s;
+}
+
+.media img{
+    cursor: pointer;
+}
+
+.media video{
+    display: none;
+    opacity: 0;
+}
+
+.video-titulo{
+    font-weight: bold;
+    font-style: italic;
+    font-size: 24px;
+    margin-bottom: 15px;
+    text-align: center;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.8s;
+}
+
+.controles{
+    display: none;
+    margin-top: 10px;
+}
+
+button{
+    background: none;
+    border: 1px solid red;
+    color: red;
+    font-family: Helvetica, Arial, sans-serif;
+    padding: 5px 10px;
+    margin: 3px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover{
+    background-color: red;
+    color: #2b2b2b;
+}
+
+.texto{
+    width: 35%;
+}
+
+.titulo{
+    font-size: 32px;
+    font-weight: bold;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+    
+.texto .titulo a {
+    color: red;
+    text-decoration: none;
+}
+
+.texto .titulo a:hover {
+    text-decoration: underline;
+}
+
+.descripcion{
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.volver{
+    font-size: 14px;
+    margin-bottom: 40px;
+}
+
+.volver a{
+    color: red;
+    text-decoration: none;
+}
+
+.volver a:hover{
+    text-decoration: underline;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="contenedor">
+
+<div class="media">
+
+ <! -- Photo by David Lee from Redmond, WA, USA.-->
+<img id="imagen" src="recursos/phoebe_main.jpg" alt="Phoebe Bridgers">
+
+<div class="video-titulo" id="videoTitulo">Motion Sickness</div>
+
+<video id="video">
+<source src="recursos/motion_sickness.mp4" type="video/mp4">
+</video>
+
+<div class="controles" id="controles">
+<button onclick="playVideo()">▶</button>
+<button onclick="pauseVideo()">⏸</button>
+<button onclick="speed(1)">1×</button>
+<button onclick="speed(2)">2×</button>
+<button onclick="speed(3)">3×</button>
+<button onclick="speed(4)">4×</button>
+<button onclick="mute()" style="font-family: 'Segoe UI Symbol', Helvetica, Arial;">🔇</button>
+<button onclick="fullscreen()">⛶</button>
+</div>
+
+</div>
+
+<div class="texto">
+    <div class="titulo"> <a href= "https://phoebefuckingbridgers.com/" target="_blank"> Phoebe Bridgers </a> </div>
+
+<div class="descripcion">
+Hizo su debut como solista con su disco Stranger in the Alps (2017), al cual le siguió Punisher (2020), que fue aclamado tanto por la crítica especializada como por el público y le valió 4 nominaciones a los premios Grammy, incluyendo Mejor Álbum Alternativo y mejor artista nuevo.
+<br><br><br>
+(Haz clic en la imagen para ver un videoclip)
+</div>
+
+</div>
+
+</div>
+
+<div class="volver">
+<a href="index.html">← volver a la página principal</a>
+</div>
+
+<script>
+
+const video = document.getElementById("video");
+const img = document.getElementById("imagen");
+const controles = document.getElementById("controles");
+const videoTitulo = document.getElementById("videoTitulo");
+
+window.onload = function(){
+    document.body.classList.add("visible");
+};
+
+img.onclick = function(){
+    img.style.opacity = 0;
+    setTimeout(()=>{
+        img.style.display = "none";
+
+        videoTitulo.style.display = "block";
+        video.style.display = "block";
+        controles.style.display = "block";
+
+        video.style.opacity = 0;
+        videoTitulo.style.opacity = 0;
+        video.play();
+        video.volume = 1;
+
+        setTimeout(()=>{
+            video.style.opacity = 1;
+            videoTitulo.style.opacity = 1;
+        }, 50);
+
+    }, 500);
+};
+
+function playVideo(){ video.play(); }
+function pauseVideo(){ video.pause(); }
+function speed(v){ video.playbackRate = v; }
+function mute(){ video.muted = !video.muted; }
+function fullscreen(){ video.requestFullscreen(); }
+
+</script>
+
+</body>
+</html>
